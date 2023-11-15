@@ -1,6 +1,7 @@
 import requests
 import os
 from dotenv import load_dotenv
+from send_email import send_email
 
 # Load API key from environment variables
 load_dotenv()
@@ -16,8 +17,17 @@ request = requests.get(url)
 # Parse the response content as JSON
 content = request.json()
 
+# Email body message
+message = ""
+
 # Iterate through each article received from the API
 for article in content["articles"]:
-    print(article["title"])
-    print(article["description"])
+    if article["title"] is not None:
+        # Extract the title and description of the article and append to the
+        # message
+        title = article["title"]
+        description = article["description"]
+        message += f"{title}\nDescription: {description}\n\n"
 
+# Send the email with all titles and descriptions as the message
+send_email(message)
