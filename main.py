@@ -23,8 +23,9 @@ content = request.json()
 # Email body message
 message = ""
 
-# Iterate through each article received from the API
-for article in content["articles"]:
+# Iterate through each article received from the API (limiting to the first
+# 15 articles)
+for article in content["articles"][:15]:
     if article["title"] is not None:
         # Extract the title, description and url of the article and append
         # to the message
