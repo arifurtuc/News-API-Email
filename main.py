@@ -8,8 +8,11 @@ load_dotenv()
 api_key = os.getenv("NEWS_API_KEY")
 
 # Construct the URL for the News API request using the API key
-url = ("https://newsapi.org/v2/everything?q=tesla&sortBy"
-       "=publishedAt&apiKey=") + api_key
+url = ("https://newsapi.org/v2/everything?"
+       "q=tesla&"
+       "sortBy=publishedAt&"
+       "language=en&"
+       "apiKey=") + api_key
 
 # Make a GET request to the News API
 request = requests.get(url)
